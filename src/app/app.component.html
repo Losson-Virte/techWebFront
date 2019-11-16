@@ -1,0 +1,21 @@
+<nb-layout>
+
+  <nb-layout-header>
+    <button nbButton ghost status="danger" size="giant" (click)="toggle()"><nb-icon icon="menu-2-outline"></nb-icon></button>
+    <app-menu-bar></app-menu-bar>
+  </nb-layout-header>
+
+  <nb-sidebar>
+    <app-side-menu>
+
+    </app-side-menu>
+  </nb-sidebar>
+
+  <nb-layout-column>
+    <router-outlet>
+    </router-outlet>
+  </nb-layout-column>
+
+
+</nb-layout>
+
