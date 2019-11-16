@@ -15,11 +15,12 @@ import {
   NbUserModule,
   NbSidebarService,
   NbIconModule,
-  NbCardModule, NbInputModule
+  NbCardModule, NbInputModule, NbStepperModule, NbListModule, NbMenuModule
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { LoginComponent } from './shared/forms/login/login.component';
 import { RegisterComponent } from './shared/forms/register/register.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,8 @@ import { RegisterComponent } from './shared/forms/register/register.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
     NbThemeModule.forRoot({name: 'cosmic'}),
     NbSidebarModule.forRoot(),
     NbLayoutModule,
@@ -43,6 +46,9 @@ import { RegisterComponent } from './shared/forms/register/register.component';
     NbIconModule,
     NbCardModule,
     NbInputModule,
+    NbStepperModule,
+    NbListModule,
+    NbMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

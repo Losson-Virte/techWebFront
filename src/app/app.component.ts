@@ -10,17 +10,18 @@ import {NbSidebarService} from '@nebular/theme';
 })
 export class AppComponent implements OnInit {
   title = 'techWebFront';
+  collapsed: boolean;
 
   constructor(private sidebarService: NbSidebarService) {
   }
 
   ngOnInit(): void {
-    this.toggle();
+    this.sidebarService.toggle(true)
+    this.collapsed = false;
   }
-
 
   toggle() {
     this.sidebarService.toggle(true);
+    this.collapsed = !this.collapsed;
   }
-
 }

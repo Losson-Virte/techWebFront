@@ -1,1 +1,20 @@
-<nb-icon icon="star"></nb-icon>
+<span class="menuroot">
+<a href="#">
+  <span>
+    <nb-icon icon="info-outline"></nb-icon><div class="divider" *ngIf="!collapsed"></div>
+    <span *ngIf="!collapsed" class="icon-text">about</span>
+  </span>
+</a><br>
+<a href="#">
+  <nb-icon icon="monitor-outline"></nb-icon><div class="divider" *ngIf="!collapsed"></div>
+  <span *ngIf="!collapsed" class="icon-text">services</span>
+</a><br>
+<a href="#">
+  <nb-icon icon="person-outline"></nb-icon><div class="divider" *ngIf="!collapsed"></div>
+  <span *ngIf="!collapsed" class="icon-text">clients</span>
+</a><br>
+<a href="#">
+  <nb-icon icon="email-outline"></nb-icon><div class="divider" *ngIf="!collapsed"></div>
+  <span *ngIf="!collapsed" class="icon-text">contact</span>
+</a>
+</span>

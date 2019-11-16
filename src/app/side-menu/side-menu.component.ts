@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {NbSidebarService} from '@nebular/theme';
 
 @Component({
@@ -8,10 +8,11 @@ import {NbSidebarService} from '@nebular/theme';
 })
 export class SideMenuComponent implements OnInit {
 
-  constructor(private sidebarService: NbSidebarService) {
+  @Input() collapsed: boolean;
+
+  constructor() {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
-
 }

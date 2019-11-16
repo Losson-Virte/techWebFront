@@ -1,1 +1,28 @@
+.nomargin {
+  margin: 0px;
+}
+a{
+  color: #fff;
+  text-decoration: none;
+  font-size: 25px;
+  display: block;
+}
+
+.menuroot {
+  height: 100%;
+  top: 0;
+  left: 0;
+  padding-top: 60px;
+}
+
+.menuroot a:hover {
+  color: #f1f1f1;
+}
+
+.divider{
+  width:5px;
+  height:auto;
+  display:inline-block;
+}
+
 
