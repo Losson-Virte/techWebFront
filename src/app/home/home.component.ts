@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {LiveUserService} from '../shared/services/live-user.service';
 
 @Component({
   selector: 'app-home',
@@ -7,13 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  private loginMode: boolean;
-
-  constructor() {
-    this.loginMode = true;
+  constructor(private liveService: LiveUserService) {
   }
 
   ngOnInit() {
+  }
+
+  loggedUser(): boolean {
+    return this.liveService.isConnected();
+  }
+
+  getConnectedName(): string {
+    return this.liveService.getConnected().username;
   }
 
 }

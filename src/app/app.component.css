@@ -1,0 +1,11 @@
+.parent {
+  overflow: hidden;
+  position: relative;
+}
+.plsfloatright {
+  width: 100%;
+}
+.plsfloatright *{
+  float: right;
+}
+

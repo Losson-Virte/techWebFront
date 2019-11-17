@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { SideMenuComponent } from './side-menu/side-menu.component';
-import { MenuBarComponent } from './menu-bar/menu-bar.component';
+import { LogoComponent } from './logo/logo.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   NbThemeModule,
@@ -13,7 +13,6 @@ import {
   NbSidebarModule,
   NbButtonModule,
   NbUserModule,
-  NbSidebarService,
   NbIconModule,
   NbCardModule, NbInputModule, NbStepperModule, NbListModule, NbMenuModule
 } from '@nebular/theme';
@@ -21,18 +20,22 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { LoginComponent } from './shared/forms/login/login.component';
 import { RegisterComponent } from './shared/forms/register/register.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { AccountComponent } from './account/account.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     SideMenuComponent,
-    MenuBarComponent,
+    LogoComponent,
     LoginComponent,
     RegisterComponent,
+    AccountComponent,
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
@@ -48,7 +51,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     NbInputModule,
     NbStepperModule,
     NbListModule,
-    NbMenuModule
+    NbMenuModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

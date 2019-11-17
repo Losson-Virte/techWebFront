@@ -3,11 +3,11 @@
     <nb-stepper #stepper>
       <nb-step [stepControl]="firstForm" label="Step 1">
         <form [formGroup]="firstForm" (ngSubmit)="onFirstSubmit()" class="step-container">
-          <p class="lorem">
+          <p>
             Pick an Username to join us !
           </p>
           <div class="input-group">
-            <input nbInput type="text" placeholder="Enter your Username" class="form-control" formControlName="firstCtrl"
+            <input nbInput type="text" placeholder="Enter your Username" class="form-control" formControlName="firstCtrl" [(ngModel)]="username"
                    [ngClass]="{'form-control-danger': firstForm.invalid && (firstForm.dirty || firstForm.touched)}">
             <div class="divider"></div>
             <button nbButton nbStepperNext>next</button>
@@ -17,13 +17,11 @@
       </nb-step>
       <nb-step [stepControl]="secondForm" label="Step 2">
         <form [formGroup]="secondForm" (ngSubmit)="onSecondSubmit()" class="step-container">
-          <p class="lorem">
+          <p>
             Pick a password.
           </p>
           <div class="input-group">
-            <input nbInput type="password" placeholder="Password" class="form-control" formControlName="secondCtrl"
-                   [ngClass]="{'form-control-danger': secondForm.invalid && (secondForm.dirty || secondForm.touched)}">
-            <input nbInput type="password" placeholder="Confirm Password" class="form-control" formControlName="secondCtrl"
+            <input nbInput type="password" placeholder="Password" class="form-control" formControlName="secondCtrl" [(ngModel)]="password"
                    [ngClass]="{'form-control-danger': secondForm.invalid && (secondForm.dirty || secondForm.touched)}">
           </div>
           <button nbButton nbStepperPrevious>prev</button>
@@ -33,11 +31,11 @@
       </nb-step>
       <nb-step [stepControl]="thirdForm" label="Step 3">
         <form [formGroup]="thirdForm" (ngSubmit)="onThirdSubmit()" class="step-container">
-          <p class="lorem">
+          <p>
             Enter your email.
           </p>
           <div class="input-group">
-            <input nbInput type="text" placeholder="Enter email" class="form-control" formControlName="thirdCtrl"
+            <input nbInput type="text" placeholder="Enter email" class="form-control" formControlName="thirdCtrl" [(ngModel)]="email"
                    [ngClass]="{'form-control-danger': thirdForm.invalid && (thirdForm.dirty || thirdForm.touched)}">
           </div>
           <button nbButton nbStepperPrevious>prev</button>
@@ -48,6 +46,7 @@
       <nb-step [stepControl]="thirdForm" [hidden]="true" label="Third step">
         <div class="step-container">
           <h3>Welcome Aboard</h3>
+          <div> {{username}} {{ password}} {{ email }}</div>
           <button nbButton (click)="stepper.reset()">Try again</button>
         </div>
       </nb-step>

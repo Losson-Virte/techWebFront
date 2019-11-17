@@ -1,20 +1,22 @@
-<span class="menuroot">
-<a href="#">
-  <span>
-    <nb-icon icon="info-outline"></nb-icon><div class="divider" *ngIf="!collapsed"></div>
-    <span *ngIf="!collapsed" class="icon-text">about</span>
-  </span>
-</a><br>
-<a href="#">
-  <nb-icon icon="monitor-outline"></nb-icon><div class="divider" *ngIf="!collapsed"></div>
-  <span *ngIf="!collapsed" class="icon-text">services</span>
-</a><br>
-<a href="#">
-  <nb-icon icon="person-outline"></nb-icon><div class="divider" *ngIf="!collapsed"></div>
-  <span *ngIf="!collapsed" class="icon-text">clients</span>
-</a><br>
-<a href="#">
-  <nb-icon icon="email-outline"></nb-icon><div class="divider" *ngIf="!collapsed"></div>
-  <span *ngIf="!collapsed" class="icon-text">contact</span>
-</a>
+<span class="menuroot center">
+  <a href="#">
+      <nb-icon icon="info-outline"></nb-icon>
+      <span *ngIf="!collapsed" class="icon-text">About</span>
+  </a><hr>
+  <a href="#">
+    <nb-icon icon="monitor-outline"></nb-icon>
+    <span *ngIf="!collapsed" class="icon-text">Services</span>
+  </a><hr>
+  <a href="#">
+    <nb-icon icon="person-outline"></nb-icon>
+    <span *ngIf="!collapsed" class="icon-text">Clients</span>
+  </a><hr>
+  <a href="#">
+    <nb-icon icon="email-outline"></nb-icon>
+    <span *ngIf="!collapsed" class="icon-text">Contact</span>
+  </a><hr *ngIf="logged">
+  <a href="#" *ngIf="logged" (click)="liveUser.logout()">
+    <nb-icon icon="power-outline"></nb-icon>
+    <span *ngIf="!collapsed" class="icon-text">logout</span>
+  </a>
 </span>

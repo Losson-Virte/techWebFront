@@ -1,8 +1,9 @@
 <nb-layout>
 
-  <nb-layout-header>
-    <button nbButton ghost status="danger" size="giant" (click)="toggle()"><nb-icon icon="menu-2-outline"></nb-icon></button>
-    <app-menu-bar></app-menu-bar>
+  <nb-layout-header class="parent">
+    <button nbButton ghost status="danger" size="Large" (click)="toggle()"><nb-icon icon="menu-2-outline"></nb-icon></button>
+    <app-logo class="fit"></app-logo>
+    <div class="plsfloatright"><app-account></app-account></div>
   </nb-layout-header>
 
   <nb-sidebar>

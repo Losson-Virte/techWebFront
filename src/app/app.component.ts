@@ -13,10 +13,10 @@ export class AppComponent implements OnInit {
   collapsed: boolean;
 
   constructor(private sidebarService: NbSidebarService) {
+    sidebarService.collapse();
   }
 
   ngOnInit(): void {
-    this.sidebarService.toggle(true)
     this.collapsed = false;
   }
 

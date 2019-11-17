@@ -1,8 +1,9 @@
 <nb-card class="form">
-    <form class="login-form input-group" >
-        <input nbInput type="text" placeholder="Username"/>
-      <input nbInput type="password" placeholder="Password"/>
-      <button nbButton>login</button>
+    <form class="login-form input-group" (ngSubmit)="onSubmit()">
+      <div [hidden]="!submitted" class="text-danger outline-danger">The information provided is incorrect.</div>
+      <input nbInput type="text" placeholder="Username" #username/>
+      <input nbInput type="password" placeholder="Password" #password/>
+      <button nbButton type="submit" (click)="checkCreditentials(username.value, password.value)">login</button>
       <p class="message">Not registered? <a href="/register">Create an account</a></p>
     </form>
 </nb-card>

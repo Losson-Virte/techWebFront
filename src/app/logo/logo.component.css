@@ -2,7 +2,15 @@
   background: -webkit-linear-gradient(#a16eff, #b81d5b);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  font-family: 'Tomorrow', sans-serif;
 }
 .classy-link {
   text-decoration: none;
+}
+.left{
+  float: left;
+}
+.right {
+  margin-left: 50%;
+  float: right;
 }

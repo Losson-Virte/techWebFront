@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {NbSidebarService} from '@nebular/theme';
+import {LiveUserService} from '../shared/services/live-user.service';
 
 @Component({
   selector: 'app-side-menu',
@@ -10,9 +11,13 @@ export class SideMenuComponent implements OnInit {
 
   @Input() collapsed: boolean;
 
-  constructor() {
+  constructor(private liveUser: LiveUserService) {
   }
 
   ngOnInit(): void {
+  }
+
+  get logged(): boolean {
+    return this.liveUser.isConnected();
   }
 }

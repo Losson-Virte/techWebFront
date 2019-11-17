@@ -1,10 +1,11 @@
-<div *ngIf="loginMode">
+<div *ngIf="!loggedUser()">
   <app-login>
 
   </app-login>
 </div>
-<div *ngIf="!loginMode">
+<div *ngIf="loggedUser()">
   <!-- Insert App contents -->
+  {{ getConnectedName() }}
 </div>
 
 

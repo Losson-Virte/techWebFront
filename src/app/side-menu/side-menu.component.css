@@ -6,6 +6,7 @@ a{
   text-decoration: none;
   font-size: 25px;
   display: block;
+  text-transform: capitalize;
 }
 
 .menuroot {
@@ -24,5 +25,15 @@ a{
   height:auto;
   display:inline-block;
 }
-
-
+hr {
+  height: 1px;
+  padding: 0;
+  background-color: rgba(35,35,35,.46);
+  border: 0;
+}
+.icon-text {
+  padding-left: 10px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  font-size: 35px;
+}

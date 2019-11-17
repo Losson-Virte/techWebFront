@@ -1,0 +1,8 @@
+  <div class="forceright" *ngIf="loggedUser()">
+    <img class="fancy-icon" src="{{getPhoto()}}">
+    <div class="account-info">
+      <div class="username">{{getUsername()}}</div>
+      <div class="secondary">{{getEmail()}}</div>
+    </div>
+  </div>
+  <button nbButton *ngIf="!loggedUser()" (click)="redirectHome()">login</button>

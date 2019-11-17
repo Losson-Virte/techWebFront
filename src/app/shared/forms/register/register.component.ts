@@ -8,6 +8,10 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 export class RegisterComponent implements OnInit {
 
+  username: string;
+  password: string;
+  email: string;
+
   firstForm: FormGroup;
   secondForm: FormGroup;
   thirdForm: FormGroup;
@@ -40,5 +44,4 @@ export class RegisterComponent implements OnInit {
   onThirdSubmit() {
     this.thirdForm.markAsDirty();
   }
-
 }
