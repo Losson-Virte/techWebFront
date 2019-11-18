@@ -2,13 +2,14 @@ import {EventEmitter, Injectable, OnInit, Output} from '@angular/core';
 import {User} from '../interfaces/user';
 import {of, pipe} from 'rxjs';
 import {filter} from 'rxjs/operators';
+import {BackendService} from './backend.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LiveUserService {
-  private readonly exemple: User = {
-    username: 'GMachRhea',
+  readonly exemple: User = {
+    pseudo: 'GMachRhea',
     id: 'tmpid',
     photo: 'https://cdn.discordapp.com/emojis/643784597204893707.png',
     email: 'thislongemail@exempledomain.fr'
@@ -16,7 +17,7 @@ export class LiveUserService {
 
   private user: User;
 
-  constructor() {
+  constructor(private backend: BackendService) {
     this.user = this.exemple;
     this.getUserFromSession();
   }
@@ -26,20 +27,15 @@ export class LiveUserService {
   }
 
   isConnected(): boolean {
-    return this.user.id !== this.exemple.id;
+    // TODO: FIX THIS - HACK TO TEST FEATURES
+    return this.user.id === this.exemple.id;
   }
 
 
-  login(usernamev: string, password: string): void {
-    /* TODO: fetch user from bdd */
-    this.user = {
-      username: usernamev,
-      email: this.exemple.email,
-      id: password,
-      photo: this.exemple.photo,
-
-    };
-    sessionStorage.setItem('session', JSON.stringify(this.user));
+  login(pseudo: string, password: string): void {
+    this.backend.login(pseudo, password)
+      .subscribe(value => { this.user = value; sessionStorage.setItem('session', JSON.stringify(this.user)); });
+    // sessionStorage.setItem('session', JSON.stringify(this.user));
   }
 
   logout(): void {

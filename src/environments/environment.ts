@@ -9,7 +9,10 @@ export const environment = {
     host: '127.0.0.1',
     port: '3000',
     endpoints: {
-      // Routes sur les differentes parties de l'api.
+        getAll: '/user',
+        oneUser: '/user/:id',
+        getAllComponents: '/composant',
+        getOneComponent: 'composant/:id',
     }
   }
 };

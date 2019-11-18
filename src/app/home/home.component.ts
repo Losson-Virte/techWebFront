@@ -19,7 +19,6 @@ export class HomeComponent implements OnInit {
   }
 
   getConnectedName(): string {
-    return this.liveService.getConnected().username;
+    return this.liveService.getConnected().pseudo;
   }
-
 }

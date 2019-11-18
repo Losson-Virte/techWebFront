@@ -22,9 +22,25 @@
 }
 
 .form-control {
+  width: 80%;
   margin-bottom: 5px;
 }
 
 button {
   margin-top: 2px;
+}
+
+.fancy-icon{
+  vertical-align: top;
+  border: 2px solid;
+  border-color: #8F7514 #C9A932;
+  border-radius: 100%;
+  height: 45px;
+  margin-left: 15px;
+  margin-right: 15px;
+  width: 45px;
+}
+
+.text {
+  margin: 10px;
 }

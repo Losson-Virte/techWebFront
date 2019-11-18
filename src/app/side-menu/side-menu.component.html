@@ -3,9 +3,9 @@
       <nb-icon icon="info-outline"></nb-icon>
       <span *ngIf="!collapsed" class="icon-text">About</span>
   </a><hr>
-  <a href="#">
+  <a href="/components">
     <nb-icon icon="monitor-outline"></nb-icon>
-    <span *ngIf="!collapsed" class="icon-text">Services</span>
+    <span *ngIf="!collapsed" class="icon-text">Components</span>
   </a><hr>
   <a href="#">
     <nb-icon icon="person-outline"></nb-icon>
@@ -14,9 +14,15 @@
   <a href="#">
     <nb-icon icon="email-outline"></nb-icon>
     <span *ngIf="!collapsed" class="icon-text">Contact</span>
-  </a><hr *ngIf="logged">
-  <a href="#" *ngIf="logged" (click)="liveUser.logout()">
-    <nb-icon icon="power-outline"></nb-icon>
-    <span *ngIf="!collapsed" class="icon-text">logout</span>
   </a>
+  <span *ngIf="logged"><hr>
+    <a href="/settings">
+      <nb-icon icon="settings-2-outline"></nb-icon>
+      <span *ngIf="!collapsed" class="icon-text">settings</span>
+    </a><hr>
+    <a href="#" (click)="liveUser.logout()">
+      <nb-icon icon="power-outline"></nb-icon>
+      <span *ngIf="!collapsed" class="icon-text">logout</span>
+    </a>
+  </span>
 </span>

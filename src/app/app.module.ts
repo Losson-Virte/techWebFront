@@ -14,7 +14,7 @@ import {
   NbButtonModule,
   NbUserModule,
   NbIconModule,
-  NbCardModule, NbInputModule, NbStepperModule, NbListModule, NbMenuModule
+  NbCardModule, NbInputModule, NbStepperModule, NbListModule, NbMenuModule, NbTreeGridModule
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { LoginComponent } from './shared/forms/login/login.component';
@@ -22,6 +22,8 @@ import { RegisterComponent } from './shared/forms/register/register.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AccountComponent } from './account/account.component';
 import {HttpClientModule} from '@angular/common/http';
+import { SettingsComponent } from './shared/forms/settings/settings.component';
+import { ComponentComponent } from './component/component.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,8 @@ import {HttpClientModule} from '@angular/common/http';
     LoginComponent,
     RegisterComponent,
     AccountComponent,
+    SettingsComponent,
+    ComponentComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,6 +56,7 @@ import {HttpClientModule} from '@angular/common/http';
     NbStepperModule,
     NbListModule,
     NbMenuModule,
+    NbTreeGridModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

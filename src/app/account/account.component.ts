@@ -15,19 +15,19 @@ export class AccountComponent implements OnInit {
   ngOnInit() {
   }
 
-  getUsername(): string {
-    return this.liveUserService.getConnected().username;
+  get username(): string {
+    return this.liveUserService.getConnected().pseudo;
   }
 
-  getPhoto(): string {
+  get photo(): string {
     return this.liveUserService.getConnected().photo;
   }
 
-  getEmail(): string {
+  get email(): string {
     return this.liveUserService.getConnected().email;
   }
 
-  loggedUser(): boolean {
+  get loggedUser(): boolean {
     return this.liveUserService.isConnected();
   }
 
