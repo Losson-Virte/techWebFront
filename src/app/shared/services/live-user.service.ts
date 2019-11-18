@@ -1,5 +1,7 @@
-import {EventEmitter, Injectable, Output} from '@angular/core';
+import {EventEmitter, Injectable, OnInit, Output} from '@angular/core';
 import {User} from '../interfaces/user';
+import {of, pipe} from 'rxjs';
+import {filter} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +18,7 @@ export class LiveUserService {
 
   constructor() {
     this.user = this.exemple;
+    this.getUserFromSession();
   }
 
   getConnected(): User {
@@ -28,7 +31,7 @@ export class LiveUserService {
 
 
   login(usernamev: string, password: string): void {
-    /* fetch user from bdd */
+    /* TODO: fetch user from bdd */
     this.user = {
       username: usernamev,
       email: this.exemple.email,
@@ -36,9 +39,17 @@ export class LiveUserService {
       photo: this.exemple.photo,
 
     };
+    sessionStorage.setItem('session', JSON.stringify(this.user));
   }
 
   logout(): void {
     this.user = this.exemple;
+    sessionStorage.removeItem('session');
+  }
+
+  private getUserFromSession(): void {
+    of(sessionStorage.getItem('session')).
+    pipe( filter(_ => !!_))
+      .subscribe((_) => this.user = JSON.parse(_) );
   }
 }

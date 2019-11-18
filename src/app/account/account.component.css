@@ -3,9 +3,9 @@
   border-color: #8F7514 #C9A932;
   border-radius: 100%;
   float: left;
-  height: 30px;
+  height: 45px;
   margin-right: 10px;
-  width: 30px;
+  width: 45px;
 }
 .username {
   color: #f1e6d0;
@@ -23,5 +23,5 @@
 }
 .account-info {
   float: left;
-  margin: -3px 11px -10px 0;
+  margin: 5px 11px -10px 0;
 }
