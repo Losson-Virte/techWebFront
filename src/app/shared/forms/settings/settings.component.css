@@ -1,0 +1,12 @@
+.full-width {
+  width: 100%;
+}
+ span {
+   font-size: 10px;
+ }
+.custom-width {
+  width: 50%;
+}
+.separated {
+  margin-left: 10px;
+}

@@ -5,6 +5,8 @@ import {filter} from 'rxjs/operators';
 import {Router} from '@angular/router';
 import {User} from '../../interfaces/user';
 import {BackendService} from '../../services/backend.service';
+import {UsernameUnicityValidator} from '../validators/username-unicity-validator';
+import {ImageFormatValidator} from '../validators/image-format-validator';
 
 @Component({
   selector: 'app-register',
@@ -32,19 +34,38 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.photo = '';
+    this.backEndService.fetchAll().subscribe(k => this.initForms(k));
+  }
+
+  initForms(users: User[]): void{
     this.firstForm = this.fb.group({
-      firstCtrl: ['', Validators.required],
+      pseudo: ['', Validators.compose([
+        Validators.minLength(3),
+        Validators.maxLength(12),
+        Validators.required,
+        UsernameUnicityValidator.available(users)
+      ])],
     });
 
     this.secondForm = this.fb.group({
-      secondCtrl: ['', Validators.required],
+      password: ['', Validators.compose([
+        Validators.minLength(3),
+        Validators.maxLength(32),
+        Validators.required
+      ])],
     });
 
     this.thirdForm = this.fb.group({
-      thirdCtrl: ['', Validators.minLength(2)],
+      photo: ['', Validators.compose([
+        ImageFormatValidator.imageFormat,
+        Validators.required
+      ])],
     });
     this.fourthForm = this.fb.group({
-      fourthCtrl: ['', Validators.required],
+      mail: ['', Validators.compose([
+        Validators.email,
+        Validators.required
+      ])],
     });
   }
 
@@ -86,6 +107,6 @@ export class RegisterComponent implements OnInit {
       photo: this.photo,
       password: this.password,
     };
-    this.backEndService.register(this.user);
+    this.backEndService.register(this.user).subscribe(k => console.log(k));
   }
 }

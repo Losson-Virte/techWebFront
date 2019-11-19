@@ -4,6 +4,7 @@ import { environment } from '../../../environments/environment';
 import {User} from '../interfaces/user';
 import {from, Observable, of} from 'rxjs';
 import {ComponentI} from '../interfaces/component';
+import {flatMap} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -54,6 +55,11 @@ export class BackendService {
     return from(this.http.get<ComponentI[]>(this.backendUrl.getAllComponents));
   }
 
+  update(user: User, parameters: any): Observable<User> {
+    console.log(user);
+    console.log(parameters);
+    return this.http.put<User>(this.backendUrl.oneUser.replace(':id', user.id, this.options()), parameters);
+  }
 
 
   private options(headerList: object = {}): any {
@@ -63,4 +69,6 @@ export class BackendService {
         'Access-Control-Allow-Methods': 'GET,POST,OPTIONS,DELETE,PUT',
       }, headerList)) };
   }
+
+
 }

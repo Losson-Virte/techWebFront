@@ -1,12 +1,34 @@
 <nb-card class="form">
-  <nb-card-header>{{pseudo}}</nb-card-header>
+  <nb-card-header>
+    <div class="full-width">
+      <img class="fancy-icon" src="{{photo}}"/>
+    </div>
+    <br><span class="username">{{pseudo}}</span>
+  </nb-card-header>
   <nb-card-body>
   <form class="login-form input-group" [formGroup]="form">
-    <input nbInput type="text" placeholder="Username" #username/>
-    <input nbInput type="password" placeholder="Password" #password/>
-    <input nbInput type="text" placeholder="Email" #email/>
-    <input nbInput type="text" placeholder="photo" #photo/>
-    <button nbButton type="submit">save</button>
+    <div>
+    <input nbInput type="password" placeholder="Password" formControlName="password"/>
+      <span *ngIf="form.get('password').dirty && form.get('password').hasError('required')" class="text-danger">
+        Password is <strong>required</strong>
+      </span>
+      <span *ngIf="form.get('password').dirty && form.get('password').hasError('minlength')" class="text-danger">
+        Your password should be at least <strong>3 chars long</strong>
+      </span>
+    </div>
+    <input nbInput type="text" placeholder="Email" formControlName="mail"/>
+    <span *ngIf="form.get('mail').dirty && form.get('mail').hasError('required')" class="text-danger">
+      Email is <strong>required</strong>
+    </span>
+    <span *ngIf="form.get('mail').dirty && form.get('mail').hasError('email')" class="text-danger">
+      Email isn't in <strong>email format</strong> (exemple@domain.com)
+    </span>
+    <input nbInput type="text" placeholder="photo" formControlName="photo"/>
+    <span *ngIf="form.get('photo').dirty && form.get('photo').hasError('imageFormat')" class="text-danger">
+      Link provided is not a <strong>valid Image Format</strong>
+    </span>
+    <hr>
+    <button nbButton type="submit" (click)="onSave()" class="custom-width">save</button><button nbButton hero status="danger"  (click)="toggle()" class="separated"><nb-icon icon="trash-outline"></nb-icon></button>
   </form>
   </nb-card-body>
 </nb-card>

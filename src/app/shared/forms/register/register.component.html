@@ -7,10 +7,22 @@
             Pick an Username to join us !
           </p>
           <div class="input-group">
-            <input nbInput type="text" placeholder="Enter your Username" class="form-control" formControlName="firstCtrl" [(ngModel)]="pseudo"
+            <input nbInput type="text" placeholder="Enter your Username" class="form-control" formControlName="pseudo" [(ngModel)]="pseudo"
                    [ngClass]="{'form-control-danger': firstForm.invalid && (firstForm.dirty || firstForm.touched)}">
             <div class="divider"></div>
             <button nbButton nbStepperNext>next</button>
+            <span *ngIf="firstForm.get('pseudo').dirty && firstForm.get('pseudo').hasError('required')" class="text-danger">
+              Username is <strong>required</strong>.
+            </span>
+            <span *ngIf="firstForm.get('pseudo').dirty && firstForm.get('pseudo').hasError('minlength')" class="text-danger">
+              Your username should be at least <strong>2 chars long</strong>.
+            </span>
+            <span *ngIf="firstForm.get('pseudo').dirty && firstForm.get('pseudo').hasError('maxlength')" class="text-danger">
+              Your username should be <strong>12 chars long</strong> or less.
+            </span>
+            <span *ngIf="firstForm.get('pseudo').dirty && firstForm.get('pseudo').hasError('available')" class="text-danger">
+              Your username is <strong>already taken</strong> sorry !
+            </span>
           </div>
           <p class="message" align="center">Already own an Account? <a href="/home">Sign in</a></p>
         </form>
@@ -21,8 +33,17 @@
             Pick a password.
           </p>
           <div class="input-group">
-            <input nbInput type="password" placeholder="Password" class="form-control" formControlName="secondCtrl" [(ngModel)]="password"
+            <input nbInput type="password"fullWidth placeholder="Password" class="form-control" formControlName="password" [(ngModel)]="password"
                    [ngClass]="{'form-control-danger': secondForm.invalid && (secondForm.dirty || secondForm.touched)}">
+            <span *ngIf="secondForm.get('password').dirty && secondForm.get('password').hasError('required')" class="text-danger">
+              Password is <strong>required</strong>.
+            </span>
+            <span *ngIf="secondForm.get('password').dirty && secondForm.get('password').hasError('minlength')" class="text-danger">
+              Your password should be at least <strong>3 chars long</strong>.
+            </span>
+            <span *ngIf="secondForm.get('password').dirty && secondForm.get('password').hasError('maxlength')" class="text-danger">
+              Your password should be <strong>32 chars long</strong> or less.
+            </span>
           </div>
           <button nbButton nbStepperPrevious>prev</button>
           <div class="divider"></div>
@@ -35,8 +56,11 @@
             Pick do you have a link to a picture ? (leave empty for default)
           </p>
           <div class="input-group">
-            <input nbInput type="text" placeholder="CopyLink" class="form-control" formControlName="thirdCtrl" [(ngModel)]="photo"
+            <input nbInput type="text" fullWidth placeholder="CopyLink" class="form-control" formControlName="photo" [(ngModel)]="photo"
                    [ngClass]="{'form-control-danger': thirdForm.invalid }">
+            <span *ngIf="thirdForm.get('photo').dirty && thirdForm.get('photo').hasError('imageFormat')" class="text-danger">
+              Link provided is not a <strong>valid Image Format</strong>
+            </span>
             <img class="fancy-icon" src="{{photo}}" onError="this.src='https://cdn.discordapp.com/emojis/539893268108935168.png'">
           </div>
           <button nbButton nbStepperPrevious>prev</button>
@@ -50,8 +74,14 @@
             Enter your email.
           </p>
           <div class="input-group">
-            <input nbInput type="text" placeholder="Enter email" class="form-control" formControlName="fourthCtrl" [(ngModel)]="email"
+            <input nbInput type="text" placeholder="Enter email" class="form-control" formControlName="mail" [(ngModel)]="email"
                    [ngClass]="{'form-control-danger': fourthForm.invalid && (fourthForm.dirty || fourthForm.touched)}">
+            <span *ngIf="fourthForm.get('mail').dirty && fourthForm.get('mail').hasError('required')" class="text-danger">
+              Email is <strong>required</strong>.
+            </span>
+            <span *ngIf="fourthForm.get('mail').dirty && fourthForm.get('mail').hasError('email')" class="text-danger">
+              Email isn't in <strong>email format</strong>. (exemple@domain.com)
+            </span>
           </div>
           <button nbButton nbStepperPrevious>prev</button>
           <div class="divider"></div>

@@ -28,7 +28,7 @@ export class LiveUserService {
 
   isConnected(): boolean {
     // TODO: FIX THIS - HACK TO TEST FEATURES
-    return this.user.id === this.exemple.id;
+    return this.user.id !== this.exemple.id;
   }
 
 
@@ -46,6 +46,10 @@ export class LiveUserService {
   private getUserFromSession(): void {
     of(sessionStorage.getItem('session')).
     pipe( filter(_ => !!_))
-      .subscribe((_) => this.user = JSON.parse(_) );
+      .subscribe((_) => { this.user = JSON.parse(_);  } );
+  }
+
+  update(data: any): void {
+    this.backend.update(this.getConnected(), data).subscribe();
   }
 }

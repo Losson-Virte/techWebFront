@@ -2,18 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import {LiveUserService} from '../../services/live-user.service';
 import {User} from '../../interfaces/user';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
+import {ImageFormatValidator} from '../validators/image-format-validator';
 
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
-  styleUrls: ['./settings.component.css', '../login/login.component.css']
+  styleUrls: ['./settings.component.css',
+    '../login/login.component.css', '../../../account/account.component.css', '../../../side-menu/side-menu.component.css']
 })
 export class SettingsComponent implements OnInit {
 
   private user: User;
   private readonly pform: FormGroup;
 
-  constructor(private liveuserService: LiveUserService) {
+  constructor(private liveuserService: LiveUserService, private router: Router) {
     this.pform = this.buildForm();
   }
 
@@ -40,21 +43,29 @@ export class SettingsComponent implements OnInit {
 
   private buildForm(): FormGroup {
     return new FormGroup({
-      id: new FormControl('0'),
-      pseudo: new FormControl('', Validators.compose([
-        Validators.required, Validators.minLength(2)
-      ])),
       password: new FormControl('', Validators.compose([
-        Validators.required, Validators.minLength(2)
+        Validators.required, Validators.minLength(3)
       ])),
-      email: new FormControl('', Validators.compose([
+      mail: new FormControl('', Validators.compose([
         Validators.required, Validators.email
       ])),
-      photo: new FormControl('https://randomuser.me/api/portraits/lego/6.jpg')
+      photo: new FormControl('', ImageFormatValidator.imageFormat)
     });
   }
 
   preCompletion(): void {
     this.pform.patchValue(this.user);
+  }
+
+  onSave(): void {
+    this.liveuserService.update({
+      password: this.pform.getRawValue().password,
+      mail: this.pform.getRawValue().mail,
+      photo: this.pform.getRawValue().photo
+    });
+  }
+
+  toggle() {
+
   }
 }
