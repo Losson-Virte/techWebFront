@@ -1,29 +1,35 @@
 <nb-card>
   <nb-card-body>
 
-    <table [nbTreeGrid]="data" equalColumnsWidth>
+    <label class="search-label" for="search">Search:</label>
+    <input nbInput fullWidth [nbFilterInput]="dataSource" id="search" class="search-input">
 
-      <tr nbTreeGridRow *nbTreeGridRowDef="let row; columns: allColumns" ></tr>
+    <table [nbTreeGrid]="dataSource" [nbSort]="dataSource" (sort)="updateSort($event)">
+
+      <tr nbTreeGridHeaderRow *nbTreeGridHeaderRowDef="allColumns"></tr>
+      <tr nbTreeGridRow *nbTreeGridRowDef="let row; columns: allColumns"></tr>
 
       <ng-container [nbTreeGridColumnDef]="customColumn">
+        <th nbTreeGridHeaderCell [nbSortHeader]="getSortDirection(customColumn)" *nbTreeGridHeaderCellDef>
+          <span class="text-capitalize">{{customColumn}}</span>
+        </th>
         <td nbTreeGridCell *nbTreeGridCellDef="let row">
-
-          <nb-tree-grid-row-toggle *ngIf="row.hasChildren()">
-            <button nbTreeGridRowToggle [attr.aria-label]="row.expanded ? 'collapse' : 'expand'" class="row-toggle-button">
-                <span [ngClass]="{'nb-chevron-down': row.expanded, 'nb-chevron-right': !row.expanded}"
-                      aria-hidden="true">
-                </span>
-            </button>
-          </nb-tree-grid-row-toggle>
-          {{row.data.name}}
+          <app-cpicon [kind]="row.data.type" [expanded]="row.expanded"></app-cpicon>
+          {{row.data[customColumn]}}
         </td>
       </ng-container>
 
-      <ng-container *ngFor="let column of defaultColumns" [nbTreeGridColumnDef]="column">
-        <td nbTreeGridCell *nbTreeGridCellDef="let row">{{row.data[column]}}</td>
+      <ng-container *ngFor="let column of defaultColumns; let index = index"
+                    [nbTreeGridColumnDef]="column"
+                    [showOn]="getShowOn(index)">
+        <th nbTreeGridHeaderCell [nbSortHeader]="getSortDirection(column)" *nbTreeGridHeaderCellDef>
+          <span class="text-capitalize">{{column}}</span>
+        </th>
+        <td nbTreeGridCell *nbTreeGridCellDef="let row">{{row.data[column] || '-'}}</td>
       </ng-container>
 
     </table>
+
 
   </nb-card-body>
 </nb-card>

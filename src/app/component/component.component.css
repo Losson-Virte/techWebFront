@@ -4,6 +4,10 @@ button[nbTreeGridRowToggle] {
   padding: 0;
 }
 
+.text-capitalize{
+  text-transform: capitalize;
+}
+
 .search-label {
   display: block;
 }

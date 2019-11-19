@@ -23,7 +23,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AccountComponent } from './account/account.component';
 import {HttpClientModule} from '@angular/common/http';
 import { SettingsComponent } from './shared/forms/settings/settings.component';
-import { ComponentComponent } from './component/component.component';
+import {ComponentComponent, CpIconComponent} from './component/component.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +36,7 @@ import { ComponentComponent } from './component/component.component';
     AccountComponent,
     SettingsComponent,
     ComponentComponent,
+    CpIconComponent,
   ],
   imports: [
     BrowserModule,

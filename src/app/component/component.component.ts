@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {TreeNode} from '../shared/interfaces/treenode';
 import {ComponentI} from '../shared/interfaces/component';
 import {BackendService} from '../shared/services/backend.service';
@@ -12,15 +12,20 @@ import {NbSortDirection, NbSortRequest, NbTreeGridDataSource, NbTreeGridDataSour
 export class ComponentComponent implements OnInit {
 
   private data: TreeNode<ComponentI>[];
+  private numbers: number[];
   private fetchedData: ComponentI[];
   private treeRootElements: ComponentI[];
   private treeChildSorted: ComponentI[][];
   private treeRoot: string[];
+  dataSource: NbTreeGridDataSource<ComponentI>;
   customColumn = 'name';
   defaultColumns = [ 'type', 'price', 'quantity' ];
   allColumns = [ this.customColumn, ...this.defaultColumns ];
+  sortColumn: string;
+  sortDirection: NbSortDirection = NbSortDirection.NONE;
 
-  constructor(private backendservice: BackendService) {
+
+  constructor(private backendservice: BackendService, private dataSourceBuilder: NbTreeGridDataSourceBuilder<ComponentI>) {
   }
 
   ngOnInit() {
@@ -36,29 +41,25 @@ export class ComponentComponent implements OnInit {
       {"id":"5dd2ed486b04360db6294874","type":"MotherBoard","name":"Asus X299","price":700},
       {"id":"5dd2ed486b04360db6294875","type":"MotherBoard","name":"MSI Cheap","price":50}];
     this.dataSorting();
-    console.log('this.treeRoot');
-    console.log(this.treeRoot);
     this.treeChildSorted = [];
     this.treeRoot.forEach(k => this.treeChildSorted[this.treeRoot.indexOf(k)] = [])
     this.fetchedData.filter(k => this.treeChildSorted[this.treeRoot.indexOf(k.type)].push(k));
-    console.log('this.treeChildSorted');
-    console.log(this.treeChildSorted);
     this.treeRootElements = [];
+    this.numbers = [];
     this.treeRoot.forEach(k =>
       this.treeRootElements[this.treeRoot.indexOf(k)] = {
-        name: k,
+        name: k + 's',
         type: '',
-        price: null,
+        price: this.getNumberValues(this.treeChildSorted[this.treeRoot.indexOf(k)])
+          .reduce((accumulator, currentValue) => accumulator + currentValue),
         quantity: '' + this.treeChildSorted[this.treeRoot.indexOf(k)].length
       });
     this.data = [];
-    console.log('this.treeRootElements');
-    console.log(this.treeRootElements);
     this.treeRoot.forEach(k => this.data[this.treeRoot.indexOf(k)] = {
       data: this.treeRootElements[this.treeRoot.indexOf(k)],
       children: this.treeNodeConversionArray(this.treeChildSorted[this.treeRoot.indexOf(k)]),
     });
-    console.log(this.data);
+    this.dataSource = this.dataSourceBuilder.create(this.data);
   }
 
   dataSorting(): void {
@@ -76,5 +77,42 @@ export class ComponentComponent implements OnInit {
     const children: TreeNode<ComponentI>[] = [];
     input.forEach(k => children[children.length] = this.treeNodeConversion(k));
     return children;
+  }
+  updateSort(sortRequest: NbSortRequest): void {
+    this.sortColumn = sortRequest.column;
+    this.sortDirection = sortRequest.direction;
+  }
+  getSortDirection(column: string): NbSortDirection {
+    return (this.sortColumn === column) ? this.sortDirection : NbSortDirection.NONE;
+  }
+
+  getShowOn(index: number) {
+    const minWithForMultipleColumns = 400;
+    const nextColumnStep = 100;
+    return minWithForMultipleColumns + (nextColumnStep * index);
+  }
+  getNumberValues(comps: ComponentI[]): number[]{
+    const numbers: number[] = [];
+    comps.forEach(k => numbers.push(k.price));
+    return numbers;
+  }
+}
+
+@Component({
+  selector: 'app-cpicon',
+  template: `
+    <nb-tree-grid-row-toggle [expanded]="expanded" *ngIf="isDir(); else monitor">
+    </nb-tree-grid-row-toggle>
+    <ng-template #monitor>
+      <nb-icon icon="monitor-outline"></nb-icon>
+    </ng-template>
+  `,
+})
+export class CpIconComponent {
+  @Input() kind: string;
+  @Input() expanded: boolean;
+
+  isDir(): boolean {
+    return this.kind === '';
   }
 }
