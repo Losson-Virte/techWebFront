@@ -39,7 +39,7 @@ export class ComponentComponent implements OnInit {
   private asyncInit(components: ComponentI[]): void {
     this.fetchedData = components;
     this.dataSorting();
-    this.treeRoot.forEach(k => this.treeChildSorted[this.treeRoot.indexOf(k)] = [])
+    this.treeRoot.forEach(k => this.treeChildSorted[this.treeRoot.indexOf(k)] = []);
     this.fetchedData.filter(k => this.treeChildSorted[this.treeRoot.indexOf(k.type)].push(k));
     this.treeRoot.forEach(k =>
       this.treeRootElements[this.treeRoot.indexOf(k)] = {
