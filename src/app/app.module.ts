@@ -24,6 +24,9 @@ import { AccountComponent } from './account/account.component';
 import {HttpClientModule} from '@angular/common/http';
 import { SettingsComponent } from './shared/forms/settings/settings.component';
 import {ComponentComponent, CpIconComponent} from './component/component.component';
+import { ConfigurationsComponent } from './configurations/configurations.component';
+import { CreditsComponent } from './credits/credits.component';
+import { UserListComponent } from './user-list/user-list.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +40,9 @@ import {ComponentComponent, CpIconComponent} from './component/component.compone
     SettingsComponent,
     ComponentComponent,
     CpIconComponent,
+    ConfigurationsComponent,
+    CreditsComponent,
+    UserListComponent,
   ],
   imports: [
     BrowserModule,

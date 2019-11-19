@@ -3,6 +3,6 @@ export interface User {
   photo?: string;
   password?: string;
   pseudo: string;
-  email?: string;
+  mail?: string;
   _id?: string;
 }

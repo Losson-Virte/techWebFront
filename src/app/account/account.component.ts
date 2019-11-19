@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {User} from '../shared/interfaces/user';
 import {LiveUserService} from '../shared/services/live-user.service';
 import {Router} from '@angular/router';
 
@@ -24,7 +23,7 @@ export class AccountComponent implements OnInit {
   }
 
   get email(): string {
-    return this.liveUserService.getConnected().email;
+    return this.liveUserService.getConnected().mail;
   }
 
   get loggedUser(): boolean {

@@ -1,8 +1,9 @@
 <nb-card>
   <nb-card-body>
 
-    <label class="search-label" for="search">Search:</label>
-    <input nbInput fullWidth [nbFilterInput]="dataSource" id="search" class="search-input">
+    <!--<label class="search-label" for="search">Search:</label>-->
+    <input nbInput fullWidth [nbFilterInput]="dataSource"
+           id="search" class="search-input" placeholder="Search for something specific">
 
     <table [nbTreeGrid]="dataSource" [nbSort]="dataSource" (sort)="updateSort($event)">
 

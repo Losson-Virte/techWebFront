@@ -1,0 +1,11 @@
+<nb-card size="medium" class="halfwidth">
+  <nb-list>
+    <nb-list-item *ngFor="let user of users">
+        <img class="fancy-icon" [src]="user.photo">
+        <div class="account-info">
+          <div class="username">{{user.pseudo}}</div>
+          <div class="secondary">{{user.mail}}</div>
+        </div>
+    </nb-list-item>
+  </nb-list>
+</nb-card>

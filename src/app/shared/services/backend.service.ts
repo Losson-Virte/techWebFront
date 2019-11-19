@@ -17,7 +17,7 @@ export class BackendService {
     pseudo: 'GMachRhea',
     id: 'tmpid',
     photo: 'https://cdn.discordapp.com/emojis/643784597204893707.png',
-    email: 'thislongemail@exempledomain.fr'
+    mail: 'thislongemail@exempledomain.fr'
   };
 
 

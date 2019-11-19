@@ -1,6 +1,8 @@
 .parent {
   overflow: hidden;
   position: relative;
+  background-color: darkslateblue;
+  box-shadow: 0 5px 2px -2px rgba(12,12,12,.2);
 }
 .plsfloatright {
   width: 100%;

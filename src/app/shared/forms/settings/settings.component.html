@@ -1,1 +1,12 @@
-<p>settings works!</p>
+<nb-card class="form">
+  <nb-card-header>{{pseudo}}</nb-card-header>
+  <nb-card-body>
+  <form class="login-form input-group" [formGroup]="form">
+    <input nbInput type="text" placeholder="Username" #username/>
+    <input nbInput type="password" placeholder="Password" #password/>
+    <input nbInput type="text" placeholder="Email" #email/>
+    <input nbInput type="text" placeholder="photo" #photo/>
+    <button nbButton type="submit">save</button>
+  </form>
+  </nb-card-body>
+</nb-card>

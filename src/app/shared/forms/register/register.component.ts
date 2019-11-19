@@ -82,7 +82,7 @@ export class RegisterComponent implements OnInit {
     this.setDefaultPhoto();
     this.user = {
       pseudo: this.pseudo,
-      email: this.email,
+      mail: this.email,
       photo: this.photo,
       password: this.password,
     };

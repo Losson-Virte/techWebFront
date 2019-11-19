@@ -26,26 +26,21 @@ export class ComponentComponent implements OnInit {
 
 
   constructor(private backendservice: BackendService, private dataSourceBuilder: NbTreeGridDataSourceBuilder<ComponentI>) {
+    this.treeRootElements = [];
+    this.numbers = [];
+    this.treeChildSorted = [];
+    this.data = [];
   }
 
   ngOnInit() {
-    // this.backendservice.fetchAllComponents().subscribe(value => this.fetchedData = value);
-    // TODO: FIX BACK
-    this.fetchedData = [{"id":"5dd2ed486b04360db629486d","type":"GPU","name":"RTX 2080","price":2000},
-      {"id":"5dd2ed486b04360db629486e","type":"GPU","name":"GeForce Titan","price":1080},
-      {"id":"5dd2ed486b04360db629486f","type":"GPU","name":"AMD Cheap","price":200},
-      {"id":"5dd2ed486b04360db6294870","type":"Processor","name":"I9 9000","price":1500},
-      {"id":"5dd2ed486b04360db6294871","type":"CPU","name":"I7 8000","price":1000},
-      {"id":"5dd2ed486b04360db6294872","type":"CPU","name":"Intel Cheap","price":100},
-      {"id":"5dd2ed486b04360db6294873","type":"MotherBoard","name":"Aorus Xtreme","price":1000},
-      {"id":"5dd2ed486b04360db6294874","type":"MotherBoard","name":"Asus X299","price":700},
-      {"id":"5dd2ed486b04360db6294875","type":"MotherBoard","name":"MSI Cheap","price":50}];
+    this.backendservice.fetchAllComponents().subscribe(value => this.asyncInit(value));
+  }
+
+  private asyncInit(components: ComponentI[]): void {
+    this.fetchedData = components;
     this.dataSorting();
-    this.treeChildSorted = [];
     this.treeRoot.forEach(k => this.treeChildSorted[this.treeRoot.indexOf(k)] = [])
     this.fetchedData.filter(k => this.treeChildSorted[this.treeRoot.indexOf(k.type)].push(k));
-    this.treeRootElements = [];
-    this.numbers = [];
     this.treeRoot.forEach(k =>
       this.treeRootElements[this.treeRoot.indexOf(k)] = {
         name: k + 's',
@@ -54,7 +49,6 @@ export class ComponentComponent implements OnInit {
           .reduce((accumulator, currentValue) => accumulator + currentValue),
         quantity: '' + this.treeChildSorted[this.treeRoot.indexOf(k)].length
       });
-    this.data = [];
     this.treeRoot.forEach(k => this.data[this.treeRoot.indexOf(k)] = {
       data: this.treeRootElements[this.treeRoot.indexOf(k)],
       children: this.treeNodeConversionArray(this.treeChildSorted[this.treeRoot.indexOf(k)]),
@@ -91,7 +85,7 @@ export class ComponentComponent implements OnInit {
     const nextColumnStep = 100;
     return minWithForMultipleColumns + (nextColumnStep * index);
   }
-  getNumberValues(comps: ComponentI[]): number[]{
+  getNumberValues(comps: ComponentI[]): number[] {
     const numbers: number[] = [];
     comps.forEach(k => numbers.push(k.price));
     return numbers;
