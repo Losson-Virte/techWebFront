@@ -6,7 +6,11 @@ export const environment = {
     port: '3000',
     endpoints: {
       getAll: '/user',
-      oneUser: '/user/:id'
+      oneUser: '/user/:id',
+      getAllComponents: '/composant',
+      getOneComponent: 'composant/:id',
+      getAllConfigs: '/configuration',
+      getOneConfig: '/configuration/:id',
     }
   }
 };

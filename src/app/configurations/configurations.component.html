@@ -1,1 +1,13 @@
-<p>configurations works!</p>
+<nb-accordion>
+  <nb-accordion-item *ngFor="let config of configs">
+    <nb-accordion-item-header>{{config.name}} from: <span class="username"> {{' '+config.user.pseudo}}</span></nb-accordion-item-header>
+    <nb-accordion-item-body>
+      <nb-list>
+        <nb-list-item *ngFor="let composants of config.composants">
+          {{ composants.name }}, {{ composants.type }}, {{ composants.price }}
+        </nb-list-item>
+      </nb-list>
+    </nb-accordion-item-body>
+  </nb-accordion-item>
+</nb-accordion>
+

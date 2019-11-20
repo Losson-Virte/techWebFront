@@ -13,6 +13,8 @@ export const environment = {
         oneUser: '/user/:id',
         getAllComponents: '/composant',
         getOneComponent: 'composant/:id',
+        getAllConfigs: '/configuration',
+        getOneConfig: '/configuration/:id',
     }
   }
 };

@@ -14,7 +14,7 @@ import {
   NbButtonModule,
   NbUserModule,
   NbIconModule,
-  NbCardModule, NbInputModule, NbStepperModule, NbListModule, NbMenuModule, NbTreeGridModule
+  NbCardModule, NbInputModule, NbStepperModule, NbListModule, NbMenuModule, NbTreeGridModule, NbAccordionModule
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { LoginComponent } from './shared/forms/login/login.component';
@@ -64,6 +64,7 @@ import { UserListComponent } from './user-list/user-list.component';
     NbListModule,
     NbMenuModule,
     NbTreeGridModule,
+    NbAccordionModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

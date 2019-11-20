@@ -5,6 +5,8 @@ import {User} from '../interfaces/user';
 import {from, Observable, of} from 'rxjs';
 import {ComponentI} from '../interfaces/component';
 import {flatMap} from 'rxjs/operators';
+import {ConfigurationsComponent} from '../../configurations/configurations.component';
+import {Configuration} from '../interfaces/configuration';
 
 @Injectable({
   providedIn: 'root'
@@ -61,6 +63,9 @@ export class BackendService {
     return this.http.put<User>(this.backendUrl.oneUser.replace(':id', user.id, this.options()), parameters);
   }
 
+  fetchAllConfigs(): Observable<Configuration[]> {
+    return this.http.get<Configuration[]>(this.backendUrl.getAllConfigs);
+  }
 
   private options(headerList: object = {}): any {
     return { headers: new HttpHeaders(Object.assign({
