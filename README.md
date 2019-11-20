@@ -1,31 +1,23 @@
-# TechWebFront
+## Prérequis :
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.6.
+- Avoir MongoDB
+    - Vous pouvez trouver et lancer une image de MongoDB via Docker via la commande suivante : `docker run -d -p 27017-27019:27017-27019 --name mongo mongo:latest`
+- Avoir Robo 3T
+    - Nous allons utiliser Robo 3T pour communiquer avec MongoDB, vous pouvez l'installer à partir du lien suivant : https://robomongo.org/download
+- Avoir Git
+    - Git va nous permettre de récupérer les différentes parties du projet
+    
+## Installation :
+- Récupérer la partie back-end avec la commande : `git clone https://github.com/Losson-Virte/techWebBack.git`
+- Récupérer la partir front-end avec la commande : `git clone https://github.com/Losson-Virte/techWebFront.git`
+- Dans les dossiers "techWebBack" et "techWwebFront", lancer la commande `yarn install` pour installer les dépendances
+- Dans Robo 3T
+    - Créer une connexion à MongoDB (File -> Connect -> Create) de type **Direct Connexion** et ayant pour adresse **localhost:27017**
+    - Créer une database (clique droit sur votre connexion -> Create Database) avec pour nom **techWeb**
+    - Ouvrir un shell sur votre database (clique droit sur votre database -> Open Shell) et copier le code prevenant du fichier **techWebBack/scripts/init.mongo.js**, puis valider (F5 ou en cliquant sur le bouton vert "Play")
 
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Installing dependencies
-
-Run `npm install` to download dependencies.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Démarrage
+- Dans "techWebBack", démarrer le serveur à l'aide de la commande `npm run start:dev`
+    - Le serveur est accessible via l'url http://0.0.0.0:3000/documentation
+- Dans "techWebFront", démarrer l'application à l'aide de la commande `ng serve`
+    - L'application est accessible via l'url http://localhost:4200/

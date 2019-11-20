@@ -1,9 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {LiveUserService} from '../../services/live-user.service';
 import {User} from '../../interfaces/user';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {ImageFormatValidator} from '../validators/image-format-validator';
+import {NbDialogService} from '@nebular/theme';
+import {NewConfigComponent} from '../new-config/new-config.component';
+import {DialogSettingsComponent} from './dialog-settings/dialog-settings.component';
+import {ComponentI} from '../../interfaces/component';
 
 @Component({
   selector: 'app-settings',
@@ -16,7 +20,7 @@ export class SettingsComponent implements OnInit {
   private user: User;
   private readonly pform: FormGroup;
 
-  constructor(private liveuserService: LiveUserService, private router: Router) {
+  constructor(private liveuserService: LiveUserService, private router: Router, private dialogService: NbDialogService) {
     this.pform = this.buildForm();
   }
 
@@ -66,6 +70,15 @@ export class SettingsComponent implements OnInit {
   }
 
   toggle() {
+    this.dialogService.open(DialogSettingsComponent,
+      { context: {
+        un: this.user.pseudo,
+      },
+    }).onClose.subscribe(output => output && this.deletionMethod(output) );
+  }
 
+  deletionMethod(pw: string) {
+    this.liveuserService.deleteUser(pw);
+    this.router.navigateByUrl('/home');
   }
 }

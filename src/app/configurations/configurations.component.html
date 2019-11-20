@@ -1,3 +1,7 @@
+<div class="plsfloatright littlepadding" *ngIf="liveUser.isConnected()">
+  <button nbButton hero status="success"  class="text-primary" (click)="open()"> <nb-icon icon="cloud-upload-outline"></nb-icon> new Config</button>
+</div>
+<br><br>
 <nb-accordion>
   <nb-accordion-item *ngFor="let config of configs">
     <nb-accordion-item-header>{{config.name}} from: <span class="username"> {{' '+config.user.pseudo}}</span></nb-accordion-item-header>

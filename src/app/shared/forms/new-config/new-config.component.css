@@ -1,0 +1,40 @@
+nb-layout-column {
+    height: 80vw;
+}
+
+button + button {
+    margin-left: 1rem;
+}
+
+.dialog-card {
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+}
+
+@media (min-width: 40rem) {
+    .dialog-card {
+      width: 38rem;
+    }
+}
+
+.top-separation {
+  margin-top: 5rem;
+}
+.right-separation{
+  margin-right: 10px;
+}
+.selection-column {
+  width: 49%;
+  margin:auto;
+}
+
+.float-left {
+  float: left;
+}
+.float-right {
+  float: right;
+}
+.custom-margin{
+  margin-bottom: 10px;
+}

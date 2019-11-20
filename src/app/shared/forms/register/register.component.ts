@@ -37,7 +37,7 @@ export class RegisterComponent implements OnInit {
     this.backEndService.fetchAll().subscribe(k => this.initForms(k));
   }
 
-  initForms(users: User[]): void{
+  initForms(users: User[]): void {
     this.firstForm = this.fb.group({
       pseudo: ['', Validators.compose([
         Validators.minLength(3),

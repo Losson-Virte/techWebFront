@@ -35,6 +35,7 @@ export class BackendService {
 
     // build all backend urls
     Object.keys(environment.backend.endpoints).forEach(k => this.backendUrl[ k ] = `${baseUrl}${environment.backend.endpoints[ k ]}`);
+    this.user = this.exemple;
   }
 
   register(user: User): Observable<any> {
@@ -49,7 +50,7 @@ export class BackendService {
       this.fetchAll()
         .subscribe((value) => value.filter(
           k => k.pseudo === pseudo ?
-            (k.password === password ? this.user = k : this.exemple) : this.exemple ));
+            (k.password === password ? this.user = k : this.exemple)  : this.exemple ));
       return of(this.user);
   }
 
@@ -65,6 +66,14 @@ export class BackendService {
 
   fetchAllConfigs(): Observable<Configuration[]> {
     return this.http.get<Configuration[]>(this.backendUrl.getAllConfigs);
+  }
+
+  createNewConfig(config: Configuration): Observable<Configuration[]> {
+    return this.http.post<Configuration[]>(this.backendUrl.getAllConfigs, config);
+  }
+
+  deleteUser(id: string) {
+    return this.http.delete<User>(this.backendUrl.oneUser.replace(':id', id, this.options()));
   }
 
   private options(headerList: object = {}): any {

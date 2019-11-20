@@ -8,6 +8,11 @@ import {BackendService} from './backend.service';
   providedIn: 'root'
 })
 export class LiveUserService {
+
+  constructor(private backend: BackendService) {
+    this.user = this.exemple;
+    this.getUserFromSession();
+  }
   readonly exemple: User = {
     pseudo: 'GMachRhea',
     id: 'tmpid',
@@ -17,9 +22,10 @@ export class LiveUserService {
 
   private user: User;
 
-  constructor(private backend: BackendService) {
-    this.user = this.exemple;
-    this.getUserFromSession();
+  private userAndSessionStorageUpdate(user: User) {
+    this.user = user;
+    sessionStorage.removeItem('session');
+    sessionStorage.setItem('session', JSON.stringify(user));
   }
 
   getConnected(): User {
@@ -27,7 +33,6 @@ export class LiveUserService {
   }
 
   isConnected(): boolean {
-    // TODO: FIX THIS - HACK TO TEST FEATURES
     return this.user.id !== this.exemple.id;
   }
 
@@ -50,6 +55,10 @@ export class LiveUserService {
   }
 
   update(data: any): void {
-    this.backend.update(this.getConnected(), data).subscribe();
+    this.backend.update(this.getConnected(), data).subscribe(value => this.userAndSessionStorageUpdate(value));
+  }
+
+  deleteUser(pw: string) {
+    (this.user.password === pw) ? this.backend.deleteUser(this.user.id)  : this.isConnected();
   }
 }

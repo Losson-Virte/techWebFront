@@ -14,7 +14,7 @@ import {
   NbButtonModule,
   NbUserModule,
   NbIconModule,
-  NbCardModule, NbInputModule, NbStepperModule, NbListModule, NbMenuModule, NbTreeGridModule, NbAccordionModule
+  NbCardModule, NbInputModule, NbStepperModule, NbListModule, NbMenuModule, NbTreeGridModule, NbAccordionModule, NbDialogModule
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { LoginComponent } from './shared/forms/login/login.component';
@@ -27,6 +27,8 @@ import {ComponentComponent, CpIconComponent} from './component/component.compone
 import { ConfigurationsComponent } from './configurations/configurations.component';
 import { CreditsComponent } from './credits/credits.component';
 import { UserListComponent } from './user-list/user-list.component';
+import { NewConfigComponent } from './shared/forms/new-config/new-config.component';
+import { DialogSettingsComponent } from './shared/forms/settings/dialog-settings/dialog-settings.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,8 @@ import { UserListComponent } from './user-list/user-list.component';
     ConfigurationsComponent,
     CreditsComponent,
     UserListComponent,
+    NewConfigComponent,
+    DialogSettingsComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,8 +69,11 @@ import { UserListComponent } from './user-list/user-list.component';
     NbMenuModule,
     NbTreeGridModule,
     NbAccordionModule,
+    NbDialogModule.forRoot(),
+    NbDialogModule.forChild(),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [NewConfigComponent, DialogSettingsComponent],
 })
 export class AppModule { }

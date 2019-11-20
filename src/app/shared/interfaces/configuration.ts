@@ -4,6 +4,6 @@ import {User} from './user';
 export interface Configuration {
   _id?: string;
   name: string;
-  composants: ComponentI[];
+  composants?: ComponentI[];
   user: User;
 }

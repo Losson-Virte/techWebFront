@@ -1,0 +1,51 @@
+<nb-card class="dialog-card top-separation">
+  <nb-card-header class="text-success">New Configuration</nb-card-header>
+  <nb-card-body>
+        <form class="login-form input-group" [formGroup]="form">
+          <div class="input-group custom-margin">
+            Name :
+            <input nbInput type="text" placeholder="Enter a Config name" class="form-control right-separation" formControlName="name">
+            <span *ngIf="form.get('name').dirty && form.get('name').hasError('required')" class="text-danger">
+              A name is <strong>required</strong>.
+            </span>
+            <span *ngIf="form.get('name').dirty && form.get('name').hasError('minlength')" class="text-danger">
+              The name should be at least <strong>2 chars long</strong>.
+            </span>
+            <span *ngIf="form.get('name').dirty && form.get('name').hasError('maxlength')" class="text-danger">
+              The name should be <strong>12 chars long</strong> or less.
+            </span>
+            <span *ngIf="form.get('name').dirty && form.get('name').hasError('available')" class="text-danger">
+              The name is <strong>already taken</strong> sorry !
+            </span>
+          </div>
+        </form>
+
+    <nb-card size="small" class="selection-column float-left">
+      <nb-card-header class="text-success">
+        Included Components
+      </nb-card-header>
+      <nb-list>
+        <nb-list-item *ngFor="let ucomps of usedComponents" >
+          {{ ucomps.name }} ({{ ucomps.type}})
+          <button nbButton ghost status="danger" size="small" (click)="switchleft(ucomps)"><nb-icon icon="arrow-forward-outline"></nb-icon></button>
+        </nb-list-item>
+      </nb-list>
+    </nb-card>
+    <nb-card size="small" class="selection-column float-right">
+      <nb-card-header class="text-danger">
+        Excluded Components
+      </nb-card-header>
+      <nb-list>
+        <nb-list-item *ngFor="let uucomps of unusedComponents">
+          <button nbButton ghost status="success" size="small" (click)="switchright(uucomps)"><nb-icon icon="arrow-back-outline"></nb-icon></button>
+          {{ uucomps.name }} ({{ uucomps.type}})
+        </nb-list-item>
+      </nb-list>
+    </nb-card>
+  </nb-card-body>
+
+  <nb-card-footer>
+    <button nbButton status="danger" class="float-left" (click)="dismiss()">Dismiss Dialog</button>
+    <button nbButton status="primary" class="float-right" (click)="submit()">Create Config</button>
+  </nb-card-footer>
+</nb-card>
